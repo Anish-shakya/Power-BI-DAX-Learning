@@ -40,7 +40,7 @@
 - Measure can often be aggregation,caculations or operations in our data.
 ## Calculated Columns
 - Calulated Columns refers to new columns that are created using or appling dax fomula to exiting columns in our dataset.
-- Values in calculated columns are static,fixed and store in our dataset
+- Values in calculated columns are static,fixed and store in our dataset.
 ## Calculated Tables
 - Calculated tables are tables that are created within Power BI using DAX expressions.
 - These tables are not part of our original data source but instead, they are dynamically generated based on DAX expressions we define.

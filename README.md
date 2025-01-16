@@ -158,3 +158,9 @@ This DAX formula creates a calculated column to store the last purchase date of 
 Caculated measures are customer calculations that use formulas or expression
 to derive new data form existing data.
 ![alt text](/PragmaticWorks/image.png)
+
+## Semi-Additive Measure
+Semi-additive measures are data that can be aggregate across some dimension,
+but not all. They are used in many business senarios, such as budgeting, account balance,
+and inventory balance.
+

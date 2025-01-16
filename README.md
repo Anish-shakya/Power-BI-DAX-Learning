@@ -153,3 +153,8 @@ This DAX formula creates a calculated column to store the last purchase date of 
 2. **MAXX Function**
     - The MAXX functions take the table as parameter which iterates over that table(In this case, filtered 'internet sales' table for particular customer) and further evalutes the expression for each row, returning the maximum value.
     - Unlike MAX function, which works on a single column and returns the maximum value without considering the row context. 
+
+## Calculated Measures
+Caculated measures are customer calculations that use formulas or expression
+to derive new data form existing data.
+![alt text](/PragmaticWorks/image.png)

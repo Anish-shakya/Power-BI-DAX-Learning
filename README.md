@@ -178,6 +178,17 @@ DIVIDE(
     [Profit],
     [Total Sales],0)
 ```
+
+```
+// Using calculate funtions
+Total Sale (All Countries) = 
+// Return the [Total Sales] For All Countries
+CALCULATE(
+    [Total Sales],
+    // ALL funtions returns all the rows or value from a table
+    // ignoring all current filter context
+    ALL('Sales Territory'[Sales Territory Country]))
+```
 # Time Intelligence In DAX
 DAX cotain a lot of time intelligence funtions that enables you to manipulate the data on the basic of time period, incuding days, months, quaters, and years. These funtions help to build measure and compare the calcutaion over those period. [Learn More Here](https://learn.microsoft.com/en-us/dax/time-intelligence-functions-dax)
 ![alt text](/PragmaticWorks/image1.png)

@@ -159,10 +159,7 @@ Caculated measures are customer calculations that use formulas or expression
 to derive new data form existing data.
 ![alt text](/PragmaticWorks/image.png)
 
-# Semi-Additive Measure
-Semi-additive measures are data that can be aggregate across some dimension,
-but not all. They are used in many business senarios, such as budgeting, account balance,
-and inventory balance.
+
 ```
 ### few basic measures
 Total Cost = SUM('Internet Sales'[Total Product Cost])
@@ -209,13 +206,12 @@ IF(
     CALCULATE(
         [Total Sales],
         'Sales Territory'[Sales Territory Country] = "United States"))
-
-Total Sales (US & Canada) = 
-CALCULATE(
-    [Total Sales],
-    'Sales Territory'[Sales Territory Country] IN {"United States","Canada"}
-    )
+        
 ```
+# Semi-Additive Measure
+Semi-additive measures are data that can be aggregate across some dimension,
+but not all. They are used in many business senarios, such as budgeting, account balance,
+and inventory balance.
 # Time Intelligence In DAX
 DAX cotain a lot of time intelligence funtions that enables you to manipulate the data on the basic of time period, incuding days, months, quaters, and years. These funtions help to build measure and compare the calcutaion over those period. [Learn More Here](https://learn.microsoft.com/en-us/dax/time-intelligence-functions-dax)
 ![alt text](/PragmaticWorks/image1.png)

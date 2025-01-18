@@ -180,14 +180,41 @@ DIVIDE(
 ```
 
 ```
-// Using calculate funtions
 Total Sale (All Countries) = 
 // Return the [Total Sales] For All Countries
+IF(
+    ISBLANK([Total Sales]),
+    BLANK(),
+    CALCULATE(
+        [Total Sales],
+        // ALL funtions returns all the rows or value from a table ignoring all current filter context
+        ALL('Sales Territory'[Sales Territory Country])))
+```
+
+```
+Total Sales (Canada) = 
+IF(
+    ISBLANK([Total Sales]),
+    BLANK(),
+    CALCULATE(
+    [Total Sales],
+    'Sales Territory'[Sales Territory Country] ="Canada"
+    )
+)
+
+Total Sales (United States) = 
+IF(
+    ISBLANK([Total Sales]),
+    BLANK(),
+    CALCULATE(
+        [Total Sales],
+        'Sales Territory'[Sales Territory Country] = "United States"))
+
+Total Sales (US & Canada) = 
 CALCULATE(
     [Total Sales],
-    // ALL funtions returns all the rows or value from a table
-    // ignoring all current filter context
-    ALL('Sales Territory'[Sales Territory Country]))
+    'Sales Territory'[Sales Territory Country] IN {"United States","Canada"}
+    )
 ```
 # Time Intelligence In DAX
 DAX cotain a lot of time intelligence funtions that enables you to manipulate the data on the basic of time period, incuding days, months, quaters, and years. These funtions help to build measure and compare the calcutaion over those period. [Learn More Here](https://learn.microsoft.com/en-us/dax/time-intelligence-functions-dax)

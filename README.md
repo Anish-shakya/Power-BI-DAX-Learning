@@ -166,11 +166,20 @@ and inventory balance.
 ```
 ### few basic measures
 Total Cost = SUM('Internet Sales'[Total Product Cost])
+
 Total Sales = SUM('Internet Sales'[Sales Amount])
+
 Total Transaction = COUNTROWS('Internet Sales')
-Total Profit = [Total Sales] - [Total Cost]
+
+Profit = [Total Sales] - [Total Cost]
+
+Profit Margin = 
+DIVIDE(
+    [Profit],
+    [Total Sales],0)
 ```
 # Time Intelligence In DAX
+DAX cotain a lot of time intelligence funtions that enables you to manipulate the data on the basic of time period, incuding days, months, quaters, and years. These funtions help to build measure and compare the calcutaion over those period. [Learn More Here](https://learn.microsoft.com/en-us/dax/time-intelligence-functions-dax)
 ![alt text](/PragmaticWorks/image1.png)
 ## Year-to-Date
 ## Prior Year

@@ -79,7 +79,7 @@
 
 
 # DAX Fundamentals
-![alt text](Assets/DataModel.png)
+![alt text](/PragmaticWorks//DataModel.png)
 - This is the glimpse of data model I'll be using Through out this learning journey.
 ## Navigation Functions
 ### RELATED

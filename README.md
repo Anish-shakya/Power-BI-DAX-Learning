@@ -163,8 +163,15 @@ to derive new data form existing data.
 Semi-additive measures are data that can be aggregate across some dimension,
 but not all. They are used in many business senarios, such as budgeting, account balance,
 and inventory balance.
-
+```
+### few basic measures
+Total Cost = SUM('Internet Sales'[Total Product Cost])
+Total Sales = SUM('Internet Sales'[Sales Amount])
+Total Transaction = COUNTROWS('Internet Sales')
+Total Profit = [Total Sales] - [Total Cost]
+```
 # Time Intelligence In DAX
+![alt text](/PragmaticWorks/image1.png)
 ## Year-to-Date
 ## Prior Year
 ## Year Over Year

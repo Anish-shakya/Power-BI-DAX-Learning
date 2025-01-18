@@ -216,6 +216,18 @@ and inventory balance.
 DAX cotain a lot of time intelligence funtions that enables you to manipulate the data on the basic of time period, incuding days, months, quaters, and years. These funtions help to build measure and compare the calcutaion over those period. [Learn More Here](https://learn.microsoft.com/en-us/dax/time-intelligence-functions-dax)
 ![alt text](/PragmaticWorks/image1.png)
 ## Year-to-Date
+Evaluates the year-to-date value of the expression in the current context.
+```
+YTD Sales = 
+TOTALYTD(
+    [Total Sales],
+    'Date'[Date]
+)
+```
 ## Prior Year
+Used to compare the sale of current date with previous date on different year.
+```
+
+```
 ## Year Over Year
 

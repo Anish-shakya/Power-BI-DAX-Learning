@@ -269,3 +269,23 @@ CALCULATE(
 To handle Blank cases DAX provided us with LASTNONBLANK() function which take last date with no blank values. Lets say, Our business was closes on July 31st and there was no record for inventory on that day, the fucntion will take value of july 30th as last inventory balance.
 
 ![alt text](/PragmaticWorks/image-2.png)
+
+```
+Opening Balance Month = 
+OPENINGBALANCEMONTH(
+    [Product Inventory],
+    'Date'[Date])
+```
+
+```
+Opening Balance (Non Blank Date) = 
+CALCULATE(
+    [Product Inventory],
+///Filter Part Of Calulate
+LASTNONBLANK(
+    PARALLELPERIOD(
+        'Date'[Date],
+        -1,
+        MONTH),[Product Inventory]
+))
+```

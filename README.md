@@ -208,10 +208,7 @@ IF(
         'Sales Territory'[Sales Territory Country] = "United States"))
         
 ```
-# Semi-Additive Measure
-Semi-additive measures are data that can be aggregate across some dimension,
-but not all. They are used in many business senarios, such as budgeting, account balance,
-and inventory balance.
+
 # Time Intelligence In DAX
 DAX cotain a lot of time intelligence funtions that enables you to manipulate the data on the basic of time period, incuding days, months, quaters, and years. These funtions help to build measure and compare the calcutaion over those period. [Learn More Here](https://learn.microsoft.com/en-us/dax/time-intelligence-functions-dax)
 ![alt text](/PragmaticWorks/image1.png)
@@ -227,7 +224,48 @@ TOTALYTD(
 ## Prior Year
 Used to compare the sale of current date with previous date on different year.
 ```
+Prior Year Sales = 
+CALCULATE(
+    [Total Sales],
+    SAMEPERIODLASTYEAR(
+        'Date'[Date])
+)
 
+Prior Year YTD Sales = 
+CALCULATE(
+    [YTD Sales],
+    SAMEPERIODLASTYEAR('Date'[Date])
+)
 ```
 ## Year Over Year
 
+# Semi-Additive Measure
+Semi-additive measures are data that can be aggregate across some dimension,
+but not all. They are used in many business senarios, such as budgeting, account balance,
+and inventory balance.
+
+```
+Closing Balance (Last Date) = 
+CALCULATE(
+    [Product Inventory],
+    LASTDATE('Date'[Date])
+)
+
+```
+Above DAX calculate the closing balance for each date. But lets suppose for any month on the last day we were close and there is no record for inventory, then for that case the dax will return blank values.
+
+![alt text](/PragmaticWorks/image-3.png)
+
+Here, In above image we can see for July and December the closing balance is blank. This is the case arises as we don't have records of the inventory balance for july 31st or december 31st. This might be due to many reason like if we were close on that day or there was some exceptional cases that hamper our business on that day.
+
+```
+Closing Balance (Non Blank Last Date) = 
+CALCULATE(
+    [Product Inventory],
+    LASTNONBLANK('Date'[Date],
+        [Product Inventory])
+)
+```
+To handle Blank cases DAX provided us with LASTNONBLANK() function which take last date with no blank values. Lets say, Our business was closes on July 31st and there was no record for inventory on that day, the fucntion will take value of july 30th as last inventory balance.
+
+![alt text](/PragmaticWorks/image-2.png)

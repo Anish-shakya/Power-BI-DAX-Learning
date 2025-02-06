@@ -251,6 +251,7 @@ CALCULATE(
     LASTDATE('Date'[Date])
 )
 
+
 ```
 Above DAX calculate the closing balance for each date. But lets suppose for any month on the last day we were close and there is no record for inventory, then for that case the dax will return blank values.
 

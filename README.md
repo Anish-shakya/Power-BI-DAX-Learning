@@ -17,12 +17,9 @@
 |[**Introduction**](#introduction)|DAX Overview, Calculated table,columns and Row level security|
 |[**Aggregation Functions**](#aggregate-functions-overview)|Overview on some Aggregate Functions in DAX|
 |[**DAX Fundamentals**](#dax-fundamentals)|Navigation Functions,Calculated Columns, Calculated Measures|
-|Date and Time Functions||
-|Filter Functions||
-|Relationship Functions||
-|Table Manipulation Functions||
-|Time Intelligence Functions||
-|DAX Statements||
+|[**Calculated Measure**](#calculated-measures)|Calculated Column, Measureas and tables|
+|[**Time Intelligence Functions**](#time-intelligence-in-dax)|Year to date, Same period last year, prior year to date|
+|[**Semi-additive Measures**](#semi-additive-measure)|Opening Balance Month, Parallel Period|
 
 # Learning Guide
 - Through this learning journey, I will be following the resource mention in above learning resources table.

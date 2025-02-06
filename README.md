@@ -287,3 +287,18 @@ LASTNONBLANK(
         MONTH),[Product Inventory]
 ))
 ```
+# Visual Calculations
+In Power BI, Visual Calculations refer to calculations that are applied directly within a visual rather than at the data model level using DAX (Data Analysis Expressions).
+
+```
+Running Total Sales = 
+FORMAT(RUNNINGSUM([Total Sales]),"$0,000.00")
+
+Runing Total YTD = 
+FORMAT(RUNNINGSUM([Total Sales],ROWS,,HIGHESTPARENT),"$0,000.00")
+
+Running Total QTD = 
+FORMAT(RUNNINGSUM([Total Sales],ROWS,,2),"$0,000.00")
+
+```
+![alt text](/PragmaticWorks/image4.png)

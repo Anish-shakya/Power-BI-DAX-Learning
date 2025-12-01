@@ -1,0 +1,146 @@
+-- Full Name Column (Column on Customer Table)
+Full Name = 'Customer'[First Name] & " " & 'Customer'[ Last Name]
+
+-- Age Breakdown Calculation (Column on Customer Table)
+Age Breakdown = 
+IF('Customer'[Age] >= 55, "55+",
+IF('Customer'[Age] >= 45, "45-54",
+IF('Customer'[Age] >= 35, "35-44",
+IF('Customer'[Age] >= 25, "25-34",
+"18-34" ) ) )
+
+-- Month Year
+Month Year = FORMAT('Date'[Date], "mm-yyyy")
+
+-- Temperature Key (Column on Internet Sales Table)
+Temperature Key = 
+RELATED('Sales Territory'[Sales Territory Region]) & RELATED('Date'[Month Number Of Year])
+
+-- Region Sales =
+SUMX(RELATEDTABLE('Fact Sales'), 'Fact Sales'[Sales Amount])
+
+-- Region Volume
+Region Sales Volume = 
+SWITCH(TRUE(),
+    [Total Transactions] >= 3000000, "High Volume",
+    [Total Transactions] >= 1000000, "Medium Volume",
+    [Total Transactions] > 0, "Low Volume",
+    "N/A" ) 
+
+***Optional
+-- Last Purchase Date (Column on Customer Table)
+Last Order Date = MAXX(RELATEDTABLE('Fact Sales'), 'Fact Sales'[Order Date])
+
+*** Calculated Measures ***
+
+-- Total Sales
+Total Sales = SUM('Fact Sales'[Sales Amount]) 
+
+-- Total Costs
+Total Costs = SUM('Fact Sales'[Total Product Cost])
+
+-- Total Quantity (Measure on Fact Sales)
+Total Quantity = SUM('Fact Sales'[Order Quantity])
+
+-- Total Orders (Measure on Fact Sales)
+Total Orders = DISTINCTCOUNT('Fact Sales'[Sales Order Number])
+
+-- Total Profit
+Total Profit = [Total Sales] - [Total Costs]
+
+-- Profit Margin
+Profit Margin = DIVIDE([Total Profit], [Total Sales])
+
+*** Working with CALCULATE ***
+
+-- Total Sales (All Countries)
+Total Sales (All Countries) = 
+CALCULATE(
+    [Total Sales],
+    ALL('Sales Territory'[Sales Territory Country] ) ) 
+
+--Percent of Total
+% of Total Sales = 
+DIVIDE(
+    [Total Sales],
+    [Total Sales (All Countries)] )
+
+-- Total Sales (United States)
+Total Sales (US) = 
+CALCULATE(
+    [Total Sales],
+    'Sales Territory'[Sales Territory Country] = "United States")
+
+**Remove blanks
+-- Total Sales (United States)
+Total Sales (US) = 
+IF(
+   [Total Sales] = BLANK(),
+    BLANK(),
+    CALCULATE(
+        [Total Sales],
+        'Sales Territory'[Sales Territory Country] = "United States"))
+
+-- Total Sales (North America) 
+Total Sales (North America) = 
+CALCULATE(
+    [Total Sales],
+    'Sales Territory'[Sales Territory Country] IN { "United States", "Canada" })
+
+**Optional Method** Same results as above.
+-- Total Sales (North America) 
+Total Sales (North America) = 
+CALCULATE(
+    [Total Sales],
+    'Sales Territory'[Sales Territory Country] = "United States" || // The double pipe delimiter is an OR condition.
+    'Sales Territory'[Sales Territory Country] = "Canada" )
+
+-- Total Sales (2024)
+Total Sales (2024) = 
+CALCULATE(
+    [Total Sales],
+    'Date'[Year] = 2024)
+
+*** Time Intelligence Calculations ***
+
+-- Year to Date Sales
+Total Sales YTD = 
+TOTALYTD(
+    [Total Sales],
+    'Date'[Date] )
+
+-- Fiscal Year to Date Sales
+Fiscal YTD Sales = 
+TOTALYTD(
+    [Total Sales],
+    'Date'[Date],
+    "06/30" )
+
+-- Prior Year Sales
+Prior Year Sales = 
+CALCULATE(
+    [Total Sales],
+    DATEADD(
+        'Date'[Date], -1, YEAR  ) )
+
+-- Prior Year YTD Sales
+Total Sales YTD PY = 
+CALCULATE(
+    [Total Sales YTD],
+    DATEADD(
+        'Date'[Date], -1, YEAR  ) )
+
+-- Prior Month Sales
+Total Sales PM = 
+CALCULATE(
+    [Total Sales],
+    DATEADD(
+        'Date'[Date],
+        -1, MONTH ) )
+
+-- Total Sales MOM Growth %
+Total Sales MOM Growth % = 
+DIVIDE(
+	[Total Sales] - [Total Sales PM],
+	[Total Sales PM] )
+
